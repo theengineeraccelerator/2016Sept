@@ -1,0 +1,97 @@
+﻿INSERT PRODUCT NAME Definition
+
+
+Introduction
+ADD INTRODUCTION
+
+
+Conventions
+//: A To-Be-Determined requirement. Color set by the Comments element type
+[ ... ]: Future Feature. Color set by the Identifier element type
+
+
+Product Characteristics
+    - Weight: <.3lb
+    - Height :  1cm
+    - Length (Y): <5cm
+    - Width (Z):  <4cm
+    - Target Cost: <20$
+    - Product Life Time Target: 1 year
+    - Operating Temperature: 60 - 90 F
+
+
+
+
+Tone Shield 
+Feature List
+   FEATURE 1: Speaker
+    Characteristics
+        - Frequency Range 500-16,000 HZ
+		Must be heard from 6 feet away
+	- Power input 40 ma
+	- Driven by signal only
+
+   FEATURE 2: MicroController
+    Characteristics
+        - Can run Previously compiled program for arduino
+            - Subcharacteristic
+                - Subcharacteristic
+                    - Subcharacteristic
+	- Has two communication pins for outputs
+		-Reads PWM
+	- Must be able to be powered by Arduino
+
+   FEATURE 3 Shield Connection
+    Characteristics
+        - Must have pinouts that connect to the standard pinout of an arduino
+            - Must be able to have another shield placed ontop of it such that the product above can connect to every input bellow this shield.
+                - Subcharacteristic
+                    - Subcharacteristic    
+
+
+Behavior Definition
+Product States
+	Initial State
+	Signal Driven State
+	Off State
+
+Detailed Behavior
+   Initial State: Initial State
+       EVENT 1
+            # Plug in sheild to arduino to provide power
+                # Open communication port up to input
+                    # Wait for input
+Detailed Behavior
+    State: Recieve input
+       Input is being recieved
+            # PWM out based on observed input
+                # Check for input every half a second
+                    # Stop output if no input is recieved
+Detailed Behavior
+   State: Off 
+       Unplugged from Arduino
+            # Power Down
+                
+Interface List
+   Arduino <--> Shield
+    Characteristics
+        -Physical pin connection that can be tugged removed
+	-Pins must be compatable with additional shields
+
+Command Definition
+
+
+Command             Description                                                 
+
+
+
+
+
+
+
+
+Securitys
+Regulation
+Mechanical
+Manufacturing
+
