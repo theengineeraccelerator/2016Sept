@@ -1,0 +1,269 @@
+Arduino Electronic Load Version 5
+
+Introduction
+This project is a simple electronic load using the Arduino. This version looks for any inconsistencies in the previous version – Version 4, corrects and augments to the documentation and the device. 
+
+Conventions
+Red Text: A To-Be-Determined requirement. Color set by the Comments element type
+[ ... ]: Future Feature. Color set by the Identifier element type
+CAPITAL TEXT: Text to be replaced with product specific names
+
+Product Characteristics
+  - Must interface with serial monitor of Arduino Uno 
+    - Must incorporate a heat sink and a fan
+  - Must be portable
+    - Weight: 3 pounds
+    - Height (X): 4in
+    - Length (Y): 6 in
+    - Width (Z): 6 in
+    - Target Cost: Cheap. Equal to or less than $50.00
+    - Product Life Time Target: 5 years
+    - Operating Temperature: commercial temperature range
+
+Devices
+Arduino Electronic Load 
+  Feature List 
+  Arduino
+    Characteristics
+      -User interface with serial monitor
+      -User can set commands using serial monitor
+      -Command for measuring voltage
+      - Set current that is going to be drawn from the device under test; 1 mA/bit
+      - Command for measuring current
+      - Command to measure current in a time interval 
+      - Commands for starting and exiting (Turn on and off)
+      - Controls operation of fan
+      - Compares signal from temperature sensor to temperature limit set in Arduino
+      - Turns on/off signal to fan depending on temperature of heat sink and temperature limit
+  
+  DUT (Device Under Test)
+    Characteristics
+      - Source
+      - Current can be drawn from the source
+      - Has a voltage across it that can be measured and provided to the user
+      - Output voltage: Up to 30 V 
+      - output current: Up to 2A
+  
+  Overload Protection
+    Characteristics  
+      - Protects load from over current, over voltage, and overheating 
+      - Cuts current from source for over current and over voltage 
+      - User is notified through serial monitor when heatsink is above temperature threshold
+      
+  Current Sink Driver
+    Characteristics
+      - Controls how much current passes through current sink  using a DAC connected to the Arduino
+  
+  Current Sink
+    Characteristics
+      - Sinks current from the Device Under Test(source)
+      - Range: 0 - 2A
+      - Adjusts how much current passes through
+  
+  Current sensor
+    Characteristics
+      - Senses current from Current Sink stage; 30 mV/bit  
+      - Max Current: 3A
+      - Accuracy: 1%
+  
+  Voltage sensor
+    Characteristics
+      - Senses voltage from device under test(source)
+      - Max Voltage: 30V 
+      - Accuracy: 1%
+  
+  Temperature sensor
+    Characteristics
+      - Senses temperature from heat sink
+      - Commercial temperature range
+      - Accuracy: 1%
+  
+  Heat Sink
+    Characteristics
+      - Sinks the heat from current sink stage
+      - Temperature rating of up to 100 degrees Celsius   
+  
+  Fan Driver
+    Characteristics
+      - Provides necessary power to drive the Fan
+      
+  Fan   
+    Characteristics
+      - Cools down heat sink and circuit board
+      
+  LED     
+    Characteristics
+      - Red LED                         
+      - Used to display overloading  
+  
+  Computer
+    Characteristics
+      - Uses Arduino serial monitor for display
+      - Displays current to be drawn, set by user
+      - Displays load current 
+      - Logs load current versus time
+
+  **New** High-side/Low-side switch combination for I/O pins
+    Characteristics
+      - Transistor configuration prevents sending high voltage to Arduino I/O pins.
+  
+Behavior Definition
+  Product States
+  SOURCE SETUP
+  STANDBY
+  SAFETY CHECK
+  OVERLOAD PROTECTION
+  MEASURE and CHECK
+  COOL DOWN
+  DATA LOG
+
+  Detailed Behavior
+    
+  Initial State: SOURCE SETUP
+    Event: Connection
+        - Connect device under test to electronic load
+      
+  Initial State: STANDBY
+    Event: Entry  
+      - Send state message to serial monitor
+      - Stop measurement
+      - Clear user interface display
+      - Set all values to zero 
+      
+    Event: Open serial monitor
+      -Giver user command instructions to type in serial monitor
+      - Display welcome screen on serial monitor
+      
+    Event: Safety Check command
+      - Change state to Safety Check
+  
+    Event: Start command
+        - Change state to MEASURE and CHECK  
+      
+    Event: current value in mA or A is typed
+      - Value of current can be typed by user to serial monitor
+      - translated current value is displayed on serial monitor
+    
+    Event: Help command
+      - Display commands that user can use on serial monitor
+      
+  Initial State: SAFETY CHECK  
+    Event: Entry
+      - Send state message to serial monitor
+      - Check sensorVoltage
+      - Display voltage value on serial monitor
+    
+    Event: If voltage is greater than 30 V
+      - Inform user on serial monitor that voltage is too high
+      - Display message to user to disconnect source 
+      - Send user a message to use a source voltage less than 30V
+    
+    Event: If voltage is less or equal than 30V
+      - Display message that voltage is in suitable range for testing
+      - Change state to STANDBY
+      
+      
+  Initial State: MEASURE AND CHECK
+    Event: Entry
+      - Send state message to serial monitor
+    
+    Event: Help command
+      - Display commands that user can use on serial monitor            
+    
+    Event: User enters current value to serial monitor 
+      - Read current from current sensor
+        If Current >= 3A 
+          - Go to Overload Protection state
+        If Current < 3A 
+          - continue
+      - Current value is displayed on serial monitor
+      - Voltage is read from source 
+      - Voltage value is displayed on serial monitor
+    
+    Event: Temperature Goes out of Range  
+      - End timer
+      - Display message "Temperature is out of range" to user
+      - Go to COOL DOWN state
+    
+    Event: End Measurement command 
+      - Set state to STANDBY
+    
+    Event: log data command
+      - Go to DATA LOG state
+    
+  Initial State: DATA LOG
+    Event: Entry
+      - Send state message to serial monitor
+      - Start Timer
+    
+    Event: Help command
+      - Display commands that user can use on serial monitor            
+    
+    Event: Current goes above 3A
+      - End timer
+      - Go to Overload Protection state
+    Event: Current is below 3A
+      - Current value is displayed on serial monitor
+      - Voltage is read from source 
+      - Voltage value is displayed on serial monitor
+      - Time is displayed on serial monitor
+    
+    Event: Temperature Goes out of Range  
+      - End timer
+      - Display message "Temperature is out of range" to user
+      - Go to COOL DOWN state
+    
+    Event: End Measurement command 
+      - End timer
+      - Set state to STANDBY
+    
+      
+  Initial State: OVERLOAD PROTECTION
+    Event: Entry
+      - Send state message to serial monitor
+      - Open current trace coming from source
+      - Display message "Current Overload" to user
+      - Inform user to decrease current
+      - Go to SAFETY CHECK state
+      
+  Initial State: COOL DOWN
+    Event: Entry
+      - Send state message to serial monitor
+      - Turn on Fan
+    
+    Event: Temperature goes below 25 degrees Celsius
+      - Turn off fan
+      - Go to STANDBY state
+
+Data Structure
+  Variables
+    - Timer
+    - fanTimer
+    - currentValue  
+    - voltageValue
+    - temperatureValue
+
+  Data Packet 
+    - Voltage
+    - Current
+    - Temperature
+
+Interface List
+  Arduino <--> Computer
+  Characteristics
+    - Serial Monitor based
+  
+  Command Description
+  help              displays commands that can be used by user
+  safetycheck     Checks voltage across source
+  start           starts measurement
+  logdata                       logs current data for a time interval
+  end                           Ends Measurement
+
+
+
+Security
+Regulation
+Mechanical
+Manufacturing
+
