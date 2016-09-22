@@ -1,0 +1,178 @@
+Product Description:  Arduino Kiln Controller
+
+Introduction:
+The Kiln is for processing neon and plasma artwork.  An electrode is attached to a recycled bottle using glass solder.  The kiln melts the solder and also heats the bottle to drive off moisture and other contaminants while the bottle is held at the required temperature for 20 minutes.  Then, the kiln turns off to prevent hot spots from the element turning back on and off while a vacuum is drawn on the bottle while it is still hot.  After the bottle has cooled completely under vacuum, a mixture is added to the bottle, while the electrode is attached to a plasma globe power source to dynamically adjust the plasma effect.  When the desired effect is attained, the bottle is removed from the gas manifold by melting the tubulation to keep it sealed from air.  The bottle is removed from the kiln.
+
+Operational Requirements:
+    - must be able to process the blue bottle: 12”x9”x24” (and smaller bottles)
+        - height must include 3” (electrode) and 1” raised platform for bottle
+        - must have an air gap between the elements and bottle of 2”
+    - must be able to get hot enough to melt glass solder at ??? DegF
+    - must be able to get to ??? max temp within 1 hour
+    - must not have hot spots to cause glass to break
+    - must be able to soak the glass (hold constant heat +-2F) for 20mins
+    - must be able to ramp slowly for thick bottles
+    - tubulation must be able to reach the pumping station
+    - the induction coil must be able to reach the electrode
+    - must be mobile to store when not in use (either light or wheels if heavy)
+    - no leaking insulation
+Device Characteristics:
+    - Outside dimensions: ???x???x???
+    - Inside dimensions: ???x???x???
+    - Weight: ???
+    - Power requirements: ???
+    - Target Cost: <$100
+    - Product Life Time Target: 5yr
+    - Operating Temperature (indoor): 32 - 100 DegF
+    - Chamber temperature range: ambient + 1000? DegF
+    - Ramp up time: 1 hour
+    - Soak variance: +-2 DegF
+Feature List:
+    LCD display
+    Indicator lights (2)
+    Selector knob
+    Controller enclosure
+    Arduino
+    110V high current Power supply for the heating element
+    5V power supply for the Arduino
+    Thermocouple
+    Thermocouple sensor
+    High current switch
+    Nichrome heating element
+    Uses mains power, 10’ cord
+Behavior:
+    Knob changes set temp
+    Set temp shown on screen while dial is turned and 5 seconds after it stops
+    Current temp shown on screen when dial not active
+    Heating element turns on when internal temp is below set temp - 2 DegF
+    Heating indicator light turns on when heating element is on
+    Power indicator light is on when the unit has power
+
+Conventions
+//: A To-Be-Determined requirement. Color set by the Comments element type
+[ ... ]: Future Feature. Color set by the Identifier element .type
+
+
+Feature List
+    LED display
+        Displays 4 digits (temp)
+            Must be at least 1” tall
+            Must be readable 10’ away for monitoring the process
+            Must be illuminated for dark warehouse conditions
+        Panel mount (to outside of enclosure)
+            Digital line input (from Arduino)
+        This number will persist until changed
+            HW or SW control of this
+    Indicator lights
+        Heating light is red
+        Power light is another color such as green or blue
+    Selector knob (or arrow buttons)
+        Output is readable by Arduino
+        Panel mount to outside of enclosure near to LED display
+    Controller enclosure
+        Must be metal and groundable for safety
+        Size: ???x???x???
+            Must be able to house:
+                Arduino
+                5V power supply
+                110V power supply
+                All wiring
+    Arduino
+        Programmable (write only)
+        Inputs:
+            Temp from thermocouple
+            Set temp from control knob
+        Outputs:
+            LED display (digital signal of numbers)
+            Heating indicator (simple analog signal of power)
+    110V high current Power supply for the heating element
+        Power these items:
+            Heating element
+            5V power supply
+            Power indicator light
+        Power cord is 10’
+    5V power supply for the Arduino
+        Powers these items:
+            Arduino (all 5V items powered through here)
+    Thermocouple
+        Must reach between mounting hole and enclosure
+        Must extend into the chamber enough to read accurate temp
+        Must be able to manually move among sample access points to chamber
+            (to check evenness of temp)
+    Thermocouple sensor
+        Input: signal from thermocouple
+        Output: digital signal to Arduino
+        Power ???
+    High current switch
+        Controlled by 5V output from Arduino
+        Switches high current (???A) from power supply to heating element
+    Nichrome heating element
+        Length: ???
+        Heat produced: ???/hr
+    Uses mains power, 10’ cord
+        3 prong, with ground
+
+Behavior Definition
+Product States
+    State: Power on
+        Substate: Begin
+            No temp has been set
+            Heating element will not turn on until a temp is set
+        Substate: Ready
+            Switch off Heating indicator light
+            Look for temp to go below the set temp - 2F
+            When met, switch to Heating
+        Substate: Heating
+            Switch on Heating indicator light
+            Heating element is full on
+            Look for temp to rise above the set temp + 2F
+            When met, switch to Ready
+    State: Power off
+        Arduino (5V): off
+        Indicator lights (5V): off
+        Power supplies (5V and 110V): off
+        Heating element (110V): off
+
+
+Interface List
+    1) Off <--> On
+        No temp is set
+        Heating element is off
+        Power indicator is on
+        Heating indicator is off
+        Display shows current temp
+        Wait for user to change the set temp
+    2) On <--> user adjusts temp
+        New temp shows on screen
+        Heating element is off
+    3) User adjusts temp <--> user stops adjusting temp
+        Wait 5 seconds
+            if user begins to adjust temp and 5 seconds isn't up, switch to 2)
+        (5 seconds is up)
+        Begin heating: turn on heating element full
+        display toggles between the current temp and the set temp while heating
+        Turn Heating indicator on
+        Look for user adjusting the temp
+            If user adjusts temp:
+                Turn off heating element
+                Turn off Heating indicator
+                Switch to 2)
+Command Definition
+
+
+Command             Description                                                 
+Temp adjust
+
+
+
+Security
+Regulation
+Mechanical
+Manufacturing
+
+
+
+Notes:
+Can upgrade to adding another indicator for "ready" when the unit has heated and reached a new temp
+Can upgrade to a power switch, to turn on and off the heating states without unplugging.
+    This switch can go with to the Arduino, or simple be a safety cutoff between the high currnet switch and Arduino
