@@ -63,12 +63,28 @@ Feature List
             Digital line input (from Arduino)
         This number will persist until changed
             HW or SW control of this
+	    * Acceptance criteria
+	        All LED segments light
+	            Test: Send 8888 to display
+	        Display can accept numbers from the Arduino
+	            Test: count up 0000-9999 by +1111 (needs only 10 iterations)
     Indicator lights
         Heating light is red
         Power light is another color such as green or blue
+	    * Acceptance criteria
+	        Both lights can turn on and turn off
+	            Test: both lights turn on for 5 seconds on power up
+	        Heating light goes on when the heating element is on
+	            Test: set the temp very low
+	        Power light goes on when power is connected
+	            Note: make sure the power light has enough power under load
+	            Test: power all parts of the system (eg heating element) at the same time, see if light is on
     Selector knob (or arrow buttons)
         Output is readable by Arduino
         Panel mount to outside of enclosure near to LED display
+	    * Acceptance criteria
+            Knob or buttons send a signal
+                Test: test program that prints the value to the computer when buttons pressed
     Controller enclosure
         Must be metal and groundable for safety
         Size: ???x???x???
@@ -77,6 +93,12 @@ Feature List
                 5V power supply
                 110V power supply
                 All wiring
+	    * Acceptance criteria
+	        All parts fit within the enclosure
+	            Test: arrange all components within the enclosure, rehearse assembly
+	            Note: it may make sense to test components before mounting, so test but don't mount right away
+	        All parts have enough access to mount to the walls (screwdrivers fit)
+	            Test: Arrange components and rehearse with tools -- all tools fit
     Arduino
         Programmable (write only)
         Inputs:
@@ -85,6 +107,8 @@ Feature List
         Outputs:
             LED display (digital signal of numbers)
             Heating indicator (simple analog signal of power)
+	    * Acceptance criteria
+	        
     110V high current Power supply for the heating element
         Power these items:
             Heating element
