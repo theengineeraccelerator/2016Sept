@@ -1317,7 +1317,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </instance>
 <instance part="U$24" gate="G$1" x="43.18" y="58.42"/>
 <instance part="U$25" gate="G$1" x="40.64" y="55.88"/>
-<instance part="GND1" gate="1" x="111.76" y="43.18"/>
+<instance part="GND1" gate="1" x="111.76" y="-7.62"/>
 </instances>
 <busses>
 </busses>
@@ -1586,17 +1586,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="58.42" y="53.34" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
-<net name="N$30" class="0">
-<segment>
-<pinref part="JP3" gate="A" pin="8"/>
-<wire x1="43.18" y1="48.26" x2="43.18" y2="43.18" width="0.4064" layer="91"/>
-<wire x1="43.18" y1="43.18" x2="17.78" y2="43.18" width="0.4064" layer="91"/>
-<wire x1="17.78" y1="43.18" x2="17.78" y2="-12.7" width="0.4064" layer="91"/>
-<wire x1="17.78" y1="-12.7" x2="55.88" y2="-12.7" width="0.4064" layer="91"/>
-<pinref part="PCB1" gate="G$1" pin="3.3V"/>
-<wire x1="55.88" y1="-12.7" x2="55.88" y2="-5.08" width="0.4064" layer="91"/>
-</segment>
-</net>
 <net name="N$31" class="0">
 <segment>
 <pinref part="JP3" gate="A" pin="9"/>
@@ -1630,8 +1619,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="129.54" y="48.26"/>
 <junction x="137.16" y="48.26"/>
 <junction x="144.78" y="48.26"/>
-<wire x1="111.76" y1="48.26" x2="111.76" y2="45.72" width="0.4064" layer="91"/>
+<wire x1="111.76" y1="48.26" x2="111.76" y2="0" width="0.4064" layer="91"/>
 <pinref part="GND1" gate="1" pin="GND"/>
+<pinref part="PCB1" gate="G$1" pin="GND."/>
+<wire x1="111.76" y1="0" x2="111.76" y2="-2.54" width="0.4064" layer="91"/>
+<wire x1="111.76" y1="-2.54" x2="111.76" y2="-5.08" width="0.4064" layer="91"/>
+<wire x1="63.5" y1="-5.08" x2="63.5" y2="-17.78" width="0.4064" layer="91"/>
+<wire x1="63.5" y1="-17.78" x2="116.84" y2="-17.78" width="0.4064" layer="91"/>
+<wire x1="116.84" y1="-17.78" x2="116.84" y2="-2.54" width="0.4064" layer="91"/>
+<wire x1="116.84" y1="-2.54" x2="111.76" y2="-2.54" width="0.4064" layer="91"/>
+<pinref part="PCB1" gate="G$1" pin="GND.."/>
+<wire x1="60.96" y1="-5.08" x2="60.96" y2="-20.32" width="0.4064" layer="91"/>
+<wire x1="60.96" y1="-20.32" x2="119.38" y2="-20.32" width="0.4064" layer="91"/>
+<wire x1="119.38" y1="-20.32" x2="119.38" y2="0" width="0.4064" layer="91"/>
+<wire x1="119.38" y1="0" x2="111.76" y2="0" width="0.4064" layer="91"/>
+<junction x="111.76" y="-2.54"/>
+<junction x="111.76" y="0"/>
 </segment>
 </net>
 <net name="N$9" class="0">
