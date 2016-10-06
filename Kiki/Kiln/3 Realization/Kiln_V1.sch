@@ -1417,6 +1417,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 </library>
 </libraries>
 <attributes>
+<attribute name="DESIGN" value="Kiki Jewell"/>
 <attribute name="REV" value="2.0"/>
 </attributes>
 <variantdefs>
@@ -1456,9 +1457,11 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <sheets>
 <sheet>
 <plain>
+<text x="270.51" y="-66.04" size="1.778" layer="91">&gt;REV</text>
+<text x="201.93" y="-62.23" size="1.778" layer="91">&gt;DESIGN</text>
 </plain>
 <instances>
-<instance part="FRAME1" gate="G$1" x="-152.4" y="-73.66"/>
+<instance part="FRAME1" gate="G$1" x="-152.4" y="-73.66" smashed="yes"/>
 <instance part="FRAME1" gate="G$2" x="177.8" y="-73.66"/>
 <instance part="PCB1" gate="G$1" x="60.96" y="17.78"/>
 <instance part="R1" gate="G$1" x="128.27" y="33.02" smashed="yes">
@@ -1886,16 +1889,6 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="149.86" y1="60.96" x2="152.4" y2="60.96" width="0.4064" layer="91"/>
 </segment>
 </net>
-</nets>
-</sheet>
-<sheet>
-<plain>
-</plain>
-<instances>
-</instances>
-<busses>
-</busses>
-<nets>
 </nets>
 </sheet>
 </sheets>
