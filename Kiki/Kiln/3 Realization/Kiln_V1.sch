@@ -725,18 +725,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 <rectangle x1="-0.1905" y1="-0.381" x2="0.1905" y2="0.381" layer="21"/>
 </package>
-<package name="1210">
-<wire x1="-1.6" y1="1.3" x2="1.6" y2="1.3" width="0.2032" layer="21"/>
-<wire x1="-1.6" y1="-1.3" x2="1.6" y2="-1.3" width="0.2032" layer="21"/>
-<smd name="1" x="-1.6" y="0" dx="1.2" dy="2" layer="1"/>
-<smd name="2" x="1.6" y="0" dx="1.2" dy="2" layer="1"/>
-<text x="-1.778" y="1.524" size="0.8128" layer="25" font="vector" ratio="15">&gt;NAME</text>
-<text x="-1.524" y="-2.286" size="0.8128" layer="27" font="vector" ratio="15">&gt;VALUE</text>
-<wire x1="-2.413" y1="1.2065" x2="2.413" y2="1.2065" width="0.0508" layer="39"/>
-<wire x1="2.413" y1="1.2065" x2="2.413" y2="-1.2065" width="0.0508" layer="39"/>
-<wire x1="2.413" y1="-1.2065" x2="-2.413" y2="-1.2065" width="0.0508" layer="39"/>
-<wire x1="-2.413" y1="-1.2065" x2="-2.413" y2="1.2065" width="0.0508" layer="39"/>
-</package>
 </packages>
 <symbols>
 <symbol name="RESISTOR">
@@ -796,19 +784,21 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </device>
 </devices>
 </deviceset>
-<deviceset name="0.1OHM-1/2W-1%(1210)" prefix="R">
+<deviceset name="330OHM1/10W1%(0603)" prefix="R" uservalue="yes">
+<description>RES-00818</description>
 <gates>
 <gate name="G$1" symbol="RESISTOR" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="1210">
+<device name="" package="0603-RES">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="RES-12374" constant="no"/>
+<attribute name="PROD_ID" value="RES-00818"/>
+<attribute name="VALUE" value="330" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -1427,7 +1417,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 </library>
 </libraries>
 <attributes>
-<attribute name="REV" value="1.0"/>
+<attribute name="REV" value="2.0"/>
 </attributes>
 <variantdefs>
 </variantdefs>
@@ -1449,7 +1439,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="T2" library="transistor" deviceset="2N3904" device=""/>
 <part name="T3" library="transistor" deviceset="2N3904" device=""/>
 <part name="T4" library="transistor" deviceset="2N3904" device=""/>
-<part name="JP3-THERM-AMP" library="microbuilder" deviceset="HEADER-1X9" device="70MIL"/>
+<part name="JP3-THERM-AMP" library="microbuilder" deviceset="HEADER-1X9" device="70MIL" value="5V"/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
@@ -1458,10 +1448,10 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="R10" library="SparkFun-Resistors" deviceset="4.7KOHM-1/10W-1%(0603)" device="" value="4.7K"/>
 <part name="R11" library="SparkFun-Resistors" deviceset="4.7KOHM-1/10W-1%(0603)" device="" value="4.7K"/>
 <part name="U$1" library="7-seg-disp" deviceset="4DIG_7SEG_056" device=""/>
-<part name="LED1" library="1-Generic" deviceset="LED" device="3MM"/>
-<part name="R-REPLACE_ME" library="SparkFun-Resistors" deviceset="0.1OHM-1/2W-1%(1210)" device=""/>
+<part name="LED1" library="1-Generic" deviceset="LED" device="3MM" value="Red"/>
 <part name="X1" library="microbuilder" deviceset="TERMBLOCK_1X2" device="" value="3.5mm term"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
+<part name="R12" library="SparkFun-Resistors" deviceset="330OHM1/10W1%(0603)" device="" value="330"/>
 </parts>
 <sheets>
 <sheet>
@@ -1516,7 +1506,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <attribute name="VALUE" x="232.41" y="-17.78" size="1.778" layer="96"/>
 </instance>
 <instance part="JP3-THERM-AMP" gate="A" x="-24.13" y="45.72" smashed="yes" rot="R180">
-<attribute name="NAME" x="-19.05" y="32.385" size="1.778" layer="95" rot="R180"/>
+<attribute name="NAME" x="-17.78" y="32.385" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-17.78" y="60.96" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="GND2" gate="1" x="39.37" y="54.61"/>
@@ -1539,13 +1529,13 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <attribute name="VALUE" x="191.77" y="-2.032" size="1.778" layer="96"/>
 </instance>
 <instance part="U$1" gate="G$1" x="171.45" y="22.86"/>
-<instance part="LED1" gate="G$1" x="154.94" y="60.96" rot="R90"/>
-<instance part="R-REPLACE_ME" gate="G$1" x="144.78" y="60.96" smashed="yes">
-<attribute name="NAME" x="132.08" y="66.2686" size="1.778" layer="95"/>
-<attribute name="VALUE" x="120.65" y="62.738" size="1.778" layer="96"/>
+<instance part="LED1" gate="G$1" x="154.94" y="60.96" smashed="yes" rot="R90">
+<attribute name="NAME" x="159.512" y="64.516" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="159.512" y="66.675" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="X1" gate="G$1" x="125.73" y="52.07" rot="R180"/>
 <instance part="GND1" gate="1" x="162.56" y="45.72"/>
+<instance part="R12" gate="G$1" x="144.78" y="60.96"/>
 </instances>
 <busses>
 </busses>
@@ -1871,19 +1861,12 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="58.42" y1="38.1" x2="58.42" y2="60.96" width="0.4064" layer="91"/>
 <wire x1="58.42" y1="60.96" x2="133.35" y2="60.96" width="0.4064" layer="91"/>
 <label x="59.69" y="62.23" size="1.778" layer="95"/>
-<pinref part="R-REPLACE_ME" gate="G$1" pin="1"/>
-<wire x1="133.35" y1="60.96" x2="139.7" y2="60.96" width="0.4064" layer="91"/>
 <wire x1="133.35" y1="60.96" x2="133.35" y2="49.53" width="0.4064" layer="91"/>
 <pinref part="X1" gate="G$1" pin="1"/>
 <wire x1="133.35" y1="49.53" x2="130.81" y2="49.53" width="0.4064" layer="91"/>
+<pinref part="R12" gate="G$1" pin="1"/>
+<wire x1="133.35" y1="60.96" x2="139.7" y2="60.96" width="0.4064" layer="91"/>
 <junction x="133.35" y="60.96"/>
-</segment>
-</net>
-<net name="N$21" class="0">
-<segment>
-<pinref part="R-REPLACE_ME" gate="G$1" pin="2"/>
-<pinref part="LED1" gate="G$1" pin="A"/>
-<wire x1="149.86" y1="60.96" x2="152.4" y2="60.96" width="0.4064" layer="91"/>
 </segment>
 </net>
 <net name="N$25" class="0">
@@ -1894,6 +1877,13 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="101.6" y1="45.72" x2="101.6" y2="22.86" width="0.4064" layer="91"/>
 <pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="101.6" y1="22.86" x2="123.19" y2="22.86" width="0.4064" layer="91"/>
+</segment>
+</net>
+<net name="N$21" class="0">
+<segment>
+<pinref part="R12" gate="G$1" pin="2"/>
+<pinref part="LED1" gate="G$1" pin="A"/>
+<wire x1="149.86" y1="60.96" x2="152.4" y2="60.96" width="0.4064" layer="91"/>
 </segment>
 </net>
 </nets>
