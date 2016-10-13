@@ -106,6 +106,11 @@ Arduino Electronic Load
   **New** High-side/Low-side switch combination for I/O pins
     Characteristics
       - Transistor configuration prevents sending high voltage to Arduino I/O pins.
+
+  Voltage Sensor
+    Characteristics
+      – Second voltage sensor used to maintain constant voltage in the Electronic Load system.
+
   
 Behavior Definition
   Product States
@@ -113,7 +118,9 @@ Behavior Definition
   STANDBY
   SAFETY CHECK
   OVERLOAD PROTECTION
-  MEASURE and CHECK
+  Constant Voltage State: MEASURE AND CHECK – CV
+  Constant Current State: MEASURE AND CHECK – CC
+  MEASURE and CHECK – CC and CV
   COOL DOWN
   DATA LOG
 
@@ -133,9 +140,12 @@ Behavior Definition
     Event: Open serial monitor
       -Giver user command instructions to type in serial monitor
       - Display welcome screen on serial monitor
-      
+
+    Event: **New** Toggle Constant Current or Constant Voltage
+        – CC or CV command toggles between having the Electronic Load maintain constant value.
+
     Event: Safety Check command
-      - Change state to Safety Check
+        - Change state to Safety Check
   
     Event: Start command
         - Change state to MEASURE and CHECK  
@@ -161,9 +171,25 @@ Behavior Definition
     Event: If voltage is less or equal than 30V
       - Display message that voltage is in suitable range for testing
       - Change state to STANDBY
+  
+  **New** Constant Voltage State: MEASURE AND CHECK – CV
+    Event: Entry
+      - Send state message to serial monitor
+    
+    Event: Help command
+      - Display commands that user can use on serial monitor
+
+    Event: User enters voltage value to serial monitor 
+      - Read voltage from voltage sensor
+        If Voltage >= 30V
+          - Go to Overload Protection state
+        If Voltage < 30V 
+          - continue
+      - Current value is displayed on serial monitor
+      - Voltage is read from source 
+      - Voltage value is displayed on serial monitor
       
-      
-  Initial State: MEASURE AND CHECK
+  Constant Current State: MEASURE AND CHECK – CC                                                                                                         
     Event: Entry
       - Send state message to serial monitor
     
@@ -179,7 +205,8 @@ Behavior Definition
       - Current value is displayed on serial monitor
       - Voltage is read from source 
       - Voltage value is displayed on serial monitor
-    
+
+  MEASURE AND CHECK – CC and CV    
     Event: Temperature Goes out of Range  
       - End timer
       - Display message "Temperature is out of range" to user
@@ -199,13 +226,17 @@ Behavior Definition
     Event: Help command
       - Display commands that user can use on serial monitor            
     
-    Event: Current goes above 3A
+    Event: Current goes above 3A or Voltage goes above 30V.
       - End timer
       - Go to Overload Protection state
-    Event: Current is below 3A
-      - Current value is displayed on serial monitor
-      - Voltage is read from source 
-      - Voltage value is displayed on serial monitor
+
+    Event: Current is below 3A or Voltage is below 30V
+      - If in CC mode: Current value is displayed on serial monitor
+        - Voltage is read from source 
+        - Voltage value is displayed on serial monitor
+      – If in CV mode: Voltage value is displayed on serial monitor
+        – Current is read from source
+        – Current value is displayed on serial monitor
       - Time is displayed on serial monitor
     
     Event: Temperature Goes out of Range  
@@ -222,8 +253,10 @@ Behavior Definition
     Event: Entry
       - Send state message to serial monitor
       - Open current trace coming from source
-      - Display message "Current Overload" to user
-      - Inform user to decrease current
+      - If Current >= 3A: Display message "Current Overload" to user
+      	- Inform user to decrease current
+      – If Voltage >= 30V: Display message “Voltage Overload” to user
+        – Inform user to decrease voltage
       - Go to SAFETY CHECK state
       
   Initial State: COOL DOWN
@@ -255,10 +288,11 @@ Interface List
   
   Command Description
   help              displays commands that can be used by user
-  safetycheck     Checks voltage across source
-  start           starts measurement
-  logdata                       logs current data for a time interval
-  end                           Ends Measurement
+  safetycheck       Checks voltage across source
+  startcc           starts measurement, enters constant current electronic load state
+  startcv           starts measurement, enters constant voltage electronic load state
+  logdata           logs current data for a time interval
+  end               Ends Measurement
 
 
 
