@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: DDSSHEILD_rev_04.PcbDoc   10/14/2016  10:24:10 AM
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : DDSSHEILD_rev_04.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        36mil (0.9144mm)         Round          52               13.84 Inch (351.43 mm)
+T2        36.43mil (0.92532mm)     Round          8                0.90 Inch (22.86 mm)
+T3        36.46mil (0.92608mm)     Round          4                0.73 Inch (18.54 mm)
+T4        36.5mil (0.9271mm)       Round          5                0.71 Inch (18.11 mm)
+T5        39.37mil (1mm)           Round          6                1.38 Inch (35.09 mm)
+T6        94.49mil (2.40005mm)     Round          4                1.53 Inch (38.76 mm)
+---------------------------------------------------------------------------
+Totals                                            79               19.09 Inch (484.79 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:01
