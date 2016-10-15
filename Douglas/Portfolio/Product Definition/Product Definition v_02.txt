@@ -1,0 +1,146 @@
+﻿Arduino DDS Tone Shield Definition
+
+
+Introduction
+There is currently no easy way to achieve a tone sign wave using the current arduno uno rev 3 board. This project looks to become an accessory to the Arduino Uno board that will generate a tone by utilizing 
+A direct digital snythesizer in conjunction with a low pass chebyshev filter.
+
+Conventions
+//: A To-Be-Determined requirement. Color set by the Comments element type
+[ ... ]: Future Feature. Color set by the Identifier element type
+
+
+Product Characteristics
+    - Weight: <.3lb
+    - Height :  1cm
+    - Length (Y): <5cm
+    - Width (Z):  <4cm
+    - Target Cost: <20$
+    - Product Life Time Target: 1 year
+    - Operating Temperature: 60 - 90 F
+
+
+
+
+Tone Shield 
+Feature List
+   FEATURE 1: Speaker
+    Characteristics
+        - Frequency Range 20-20,000 Hz
+		Must be heard from 6 ft away
+	- Driven power must be less than 200 mW
+	- Driven by the micro controller only
+
+   FEATURE 2: MicroController
+    Characteristics
+        - Can run Previously compiled program for arduino
+
+	- Has two communication pins for outputs
+		-Reads PWM
+	- Must be able to be powered by Arduino
+	
+	- Needs a clock speed of at least 16 Mhz 
+
+   FEATURE 3 Shield Connection
+    Characteristics
+        - Must have pinouts that connect to the standard pinout of an arduino
+            - Must be able to have another shield placed ontop of it such that the product above can connect to every input bellow this shield.
+  
+   FEATURE 4 Arduino Channel Selector
+    Characteristics
+        - Must be a physical switch that can be manipulated by adult hands to select lines
+	- Operate 60-90 F
+	- At least 4 channel support
+	- Be able to pass digital signals
+
+   FEATURE 5 State Switch
+    Characteristics
+        - Manipulatable by adult hands
+	- Binary state
+
+   FEATURE 6 Variable Frequency Controller
+    Characteristics
+        - Manipulatably physically by adult hands
+	- Information must be passable to a MicroController
+
+   FEATURE 7 Chebyshev Low Pass filter
+    Characteristics
+        - Cut off Frequency at 20kHz
+	- Line Loss must be less than 100mw
+
+   FEATURE 8 Attenuator
+    Characteristics
+        - Be able to handle 200 mw of current flowing through the device
+	- Be able to be manipulated by human hands
+
+   FEATURE 9 State Indicator
+    Characteristics
+        - Output in the physical spectrum
+	- Less than 50mw power draw
+
+Behavior Definition
+
+
+Product States:
+	+ Intital Power On State
+	
+	+ Idle State
+	
+	+ Arduino Frequency Signal Driven State
+		
+	+ Manual Frequency Signal Driven State
+		
+	+ Off State
+
+   Initial State: Initial State
+       Arduino Uno power on
+      	   # Blink State indicator three times to confirm operational power	
+          	  # Play one tone for one second to confirm functionality of speaker
+             	 	# Check state status for operational state
+                  	 	 # Change state indicator light to comply with the state
+				 # If manual state indicator is chosen, generate signal in accordance to Variable Frequency Controller
+					# If manual state indicator is not chosen, open up communication port to arduino uno to recieve instructions on standby
+
+    State: Arduino Frequency Signal Driven State
+       Input is being recieved
+            # PWM out to drive speaker based on observed input from Arduino
+                # Check for change in state change indicator every milisecond
+                    # Check for aditional signal commands from arduino uno every milisecond
+			# If no aditional commands recieved, stop generating additional pwm driven signals to speaker and change to Idle State
+
+   State: Idle State 
+       Micro Controller is set to Idle
+            # Scan for change in State change indicator
+		# Wait to recieve instructions from Arduino Uno
+                
+
+   State: Manual Frequency Signal Driven State
+       The State Switch has been activated
+            # Check to see if State Switch has been deactivated
+		# If State switch is deactivated, return to idle state
+		# If state Switch Activated, drive speaker with pwm signal and repeat test of state switch activation
+
+
+   State: Off 
+       Unplugged from Arduino
+            # Nothing happens
+
+
+Interface List
+   Arduino <--> Shield
+    Characteristics
+        -Physical pin connections that conform vertically to the physical dimensions of the Arduino Uno
+	-Header Pins must be compatable with additional Arduino Uno shields vertically such that two of these sheilds can be stacked
+	 vertically and mechanically one ontop of the other as you would stack this ontop of an arduino
+
+Command Definition
+
+
+Command             Description                                                 
+
+
+Securitys
+Regulation
+Mechanical
+Manufacturing
+

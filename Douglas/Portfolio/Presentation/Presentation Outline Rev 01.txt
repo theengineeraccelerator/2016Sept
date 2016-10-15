@@ -1,0 +1,73 @@
+DDS Tone Shield Presentation Outline
+Author: Douglas Bahr
+Date: 10-14-2016
+
+Scope: 10 minute talk | 5 minute Q&A
+
+------------------------------------
+
+Topics to Cover:
+	+ Project Overview
+		+ What I Will be talking about
+			- Overview and goals
+			- Development process
+			- Results
+			- Future Directions
+		+ History/Need
+			- Define where the project was when I started
+			- Identify the Problem statement
+			- Proposed solution
+		+ Methods of accomplishment /theory
+			- Direct Digital Snythesizer
+			- Atiny85 unique architecture
+	+ Phases of Project
+		+ Product Def
+			- Defined Scope of the Project
+		+ Behavior
+			- Flow Diagram based from behavior list
+		+ Sourcing
+			- Talk about Parameters of Parts
+			- Process of sourcing
+			- Final part selection
+		+ Calculation
+			- Modify RC Element
+			- Chebyshev
+		+ Schematic
+			- DIP Connect to PWM
+			- on/on state switch
+			- ADC Pot
+			- Volume attenuator
+		+ Layout
+			Library?
+			- Created foot prints for parts
+			- Accomidating speaker 
+		+ Board Fab
+			- Board Fab attempts
+			- Bring up
+			- Current phase
+			- Next
+		+ Assembly
+			- EZPZ
+
+	+ Take away. What went right/Wrong | What I learned and how I would approach it differently
+		+ Sourcing parts
+			- Major Components vs minor components
+		+ Time management
+			- Deficiencies/ improvement 
+		+ Choosing the right tool: Altium
+			- Added unneeded complexity
+
+	+ Future | What needs to be done
+		
+	
+		- Testing definition
+	
+		- Bring up
+	
+		- Real values
+	
+		- Coding
+	
+		- Debugging
+
+		- Next session 	

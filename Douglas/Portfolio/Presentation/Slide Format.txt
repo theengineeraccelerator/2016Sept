@@ -1,0 +1,112 @@
+DDS Tone Shield Slide Format
+Author: Douglas Bahr
+Date: 10-14-2016
+
+Scope: 10 minute talk | 5 minute Q&A
+------------------------------------
+Topics To Cover:
+
+
+Splash Page:
+~~~~~~~~~~~~
+	Slide 1: Presentation Splash Page
+		- Text
+			DDS Tone Shield
+			Engineer Accelerator
+			Author: Douglas Bahr
+			Fall Session 2016
+		- Art
+			Logo
+			Picture of Board
+Project Overview:
+~~~~~~~~~~~~~~~~
+
+	Slide 2: Complete overview of presentation of topics to cover
+		- Text
+			+ Overview and Scope
+			+ The Development process
+			+ Project Results
+			+ Subsequent Future Work
+		- Art
+			+ Transparent bracket to make it seem like the topics are all connected
+	Slide 3: Project Goals
+		- Text
+			+ DA PWM - Direct Digital Synthesis - Analog Signal 
+		- Art
+			+ Wave form from online project page
+	Slide 4: Open HardWare Project
+		- Text
+			+ Author/Completed Date
+			+ Board Layout
+			+ Arduino programming
+		- Art
+			+ Schematic
+			+ Code
+	Slide 5: Marked Areas of Improvement
+		- Text
+			+ Arduino Shield
+			+ Code Offload
+			+ Functionality range 20-20Khz
+		- Art
+			+ Pretty board art ?
+	Slide 6: Primary Method
+		- Text
+			+ Direct Digital Synthesis
+			+ Table lookup in Flash memory
+		- Art
+			+ Wikipedia Page art
+Phases of Project
+~~~~~~~~~~~~~~~~~~~
+	Slide 7: Product Definition
+		- Text
+		- Art
+			+ Product Definition
+	Slide 8: Behavior Flow
+		- Text
+		- Art
+			+ Create art for Behavior flow
+	Slide 9: Sourcing
+		- Text
+			+ Paramiters
+		- Art
+			+ Excel Screen shot
+	Slide 10: Calculation
+		- Text
+			+ Chebyshev Filter
+			+ RC Element 
+		- Art
+			PreDiagram with clear labels
+	Slide 11: Schematic
+		- Text
+		- Art
+			+ Schematic
+	Slide 12: Layout and Library
+		- Text
+		- Art
+			+ Layout
+	Slide 13: Current State
+		- Text
+			+ Assembled 
+		- Art
+			+ Picture of Board 
+Take away
+~~~~~~~~~~~~~~~~~~~~
+	Slide 14: Final Take Away
+		- Text
+			+ Time managment
+			+ Problem Scoping
+			+ Bogged down in details: Altium
+		- Art
+Future
+~~~~~~~~~~~~~~~~~~~~
+	Slide 15: Going Forward
+		- Text
+			+ Project not complete
+			    - Complete Documents
+			    - Code
+			    - Testing Cycle
+		- Art
+	Slide 16: Thank You!
+		- Text
+			
+		- Art

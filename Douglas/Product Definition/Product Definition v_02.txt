@@ -82,13 +82,15 @@ Behavior Definition
 
 
 Product States:
-	Intital Power On State
-	Idle State
-	Arduino Frequency Signal Driven State
-	Manual Frequency Signal Driven State
-	Off State
-
-
+	+ Intital Power On State
+	
+	+ Idle State
+	
+	+ Arduino Frequency Signal Driven State
+		
+	+ Manual Frequency Signal Driven State
+		
+	+ Off State
 
    Initial State: Initial State
        Arduino Uno power on
@@ -135,12 +137,6 @@ Command Definition
 
 
 Command             Description                                                 
-
-
-
-
-
-
 
 
 Securitys
